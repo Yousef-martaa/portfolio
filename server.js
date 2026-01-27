@@ -1,8 +1,6 @@
 const express = require("express");
 const app = express();
 
-const PORT = 3000;
-
 app.use(express.static("public"));
 
 app.get("/api/projects", (req, res) => {
@@ -15,6 +13,4 @@ app.get("/api/projects", (req, res) => {
   ]);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+module.exports = app;
