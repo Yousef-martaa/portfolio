@@ -6,6 +6,7 @@ body {
   padding-top: 100px;
 }
 
+/* Hero */
 .hero h1 {
   font-size: 3rem;
   margin-bottom: 10px;
@@ -23,26 +24,7 @@ body {
   line-height: 1.6;
 }
 
-#projects {
-  margin-top: 60px;
-}
-
-#projects div {
-  background: #020617;
-  border: 1px solid #1e293b;
-  padding: 20px;
-  max-width: 600px;
-  margin: 20px auto;
-  border-radius: 8px;
-}
-
-#projects h3 {
-  margin-bottom: 10px;
-}
-
-#projects small {
-  color: #94a3b8;
-}
+/* Actions */
 .actions {
   margin-top: 30px;
 }
@@ -60,4 +42,28 @@ body {
 
 .actions a:hover {
   background: #cbd5f5;
+}
+
+/* Projects (Grid) */
+#projects {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 0 20px;
+}
+
+#projects div {
+  background: #020617;
+  border: 1px solid #1e293b;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+#projects h3 {
+  margin-bottom: 10px;
+}
+
+#projects small {
+  color: #94a3b8;
 }
