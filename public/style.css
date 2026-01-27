@@ -1,12 +1,17 @@
+/* Layout */
 body {
   font-family: Arial, sans-serif;
   background: #0f172a;
   color: #e5e7eb;
-  text-align: center;
   padding-top: 100px;
+  padding-bottom: 90px; /* مهم عشان الفوتر ما يغطي المحتوى */
 }
 
 /* Hero */
+.hero {
+  text-align: center;
+}
+
 .hero h1 {
   font-size: 3rem;
   margin-bottom: 10px;
@@ -44,7 +49,7 @@ body {
   background: #cbd5f5;
 }
 
-/* Projects (Grid) */
+/* Projects */
 #projects {
   margin-top: 60px;
   display: grid;
@@ -66,4 +71,38 @@ body {
 
 #projects small {
   color: #94a3b8;
+}
+
+/* Footer / Contact (Fixed) */
+footer.contact {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  padding: 15px 20px;
+  background: #0f172a;
+  border-top: 1px solid #1e293b;
+  font-size: 0.85rem;
+  z-index: 100;
+}
+
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  color: #cbd5f5;
+}
+
+.contact-row a {
+  color: #e5e7eb;
+  text-decoration: underline;
+}
+
+.copyright {
+  margin-top: 10px;
+  text-align: center;
+  color: #64748b;
+  font-size: 0.75rem;
 }
