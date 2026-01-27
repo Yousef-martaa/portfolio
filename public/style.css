@@ -5,3 +5,41 @@ body {
   text-align: center;
   padding-top: 100px;
 }
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero h2 {
+  font-weight: 400;
+  color: #94a3b8;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+#projects {
+  margin-top: 60px;
+}
+
+#projects div {
+  background: #020617;
+  border: 1px solid #1e293b;
+  padding: 20px;
+  max-width: 600px;
+  margin: 20px auto;
+  border-radius: 8px;
+}
+
+#projects h3 {
+  margin-bottom: 10px;
+}
+
+#projects small {
+  color: #94a3b8;
+}
