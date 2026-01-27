@@ -1,15 +1,18 @@
-fetch("/api/projects")
-  .then(res => res.json())
-  .then(projects => {
-    const container = document.getElementById("projects");
+const express = require("express");
+const path = require("path");
+const app = express();
 
-    projects.forEach(p => {
-      const div = document.createElement("div");
-      div.innerHTML = `
-        <h3>${p.title}</h3>
-        <p>${p.description}</p>
-        <small>${p.tech}</small>
-      `;
-      container.appendChild(div);
-    });
-  });
+// Serve static files
+app.use(express.static(path.join(__dirname, "public")));
+
+// Main route
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+// Projects API 
+app.get("/api/projects", (req, res) => {
+  res.json([]);
+});
+
+module.exports = app;
