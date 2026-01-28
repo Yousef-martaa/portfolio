@@ -1,13 +1,17 @@
-/* Layout */
+/* =========================
+   Layout
+========================= */
 body {
   font-family: Arial, sans-serif;
   background: #0f172a;
   color: #e5e7eb;
   padding-top: 100px;
-  padding-bottom: 90px; 
+  padding-bottom: 90px;
 }
 
-/* Hero */
+/* =========================
+   Hero
+========================= */
 .hero {
   text-align: center;
 }
@@ -29,7 +33,9 @@ body {
   line-height: 1.6;
 }
 
-/* Actions */
+/* =========================
+   Actions
+========================= */
 .actions {
   margin-top: 30px;
 }
@@ -49,30 +55,45 @@ body {
   background: #cbd5f5;
 }
 
-/* Projects */
+/* =========================
+   Projects Grid
+========================= */
 #projects {
   margin-top: 60px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* tow cards*/
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
   padding: 0 20px;
 }
 
+/* =========================
+   Project Card
+========================= */
+#projects div > * {
+  margin-bottom: 8px;
+}
+
 #projects div {
+  width: 240px;
+  min-height: 240px;
+  justify-self: center;
+
   background: #020617;
   border: 1px solid #1e293b;
   padding: 20px;
   border-radius: 12px;
 
-  width: 320px;             
-  aspect-ratio: 1 / 1;       
-  justify-self: center;      
-
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+
+
+  transition: transform 0.2s ease;
 }
 
+#projects div:hover {
+  transform: translateY(-4px);
+}
 
 #projects h3 {
   margin-bottom: 10px;
@@ -82,15 +103,70 @@ body {
   color: #94a3b8;
 }
 
-/* Mobile */
+/* =========================
+   Project Description (clamped)
+========================= */
+#projects div p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* =========================
+   Expanded Card State
+========================= */
+#projects div.expanded {
+  height: auto;
+}
+
+#projects div.expanded p {
+  -webkit-line-clamp: unset;
+}
+
+/* =========================
+   Read More / Show Less Button
+========================= */
+.toggle-btn {
+  background: none;
+  border: none;
+  color: #818cf8;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.9rem;
+  align-self: flex-start;
+}
+
+.toggle-btn:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Mobile
+========================= */
 @media (max-width: 768px) {
   #projects {
-    grid-template-columns: 1fr; /* One card on mobile*/
+    grid-template-columns: 1fr;
+  }
+
+  #projects div {
+    width: 100%;
+    max-width: 260px;
   }
 }
 
+/* Push GitHub link to bottom */
+.project-footer,
+.project-link {
+  margin-top: auto;
+}
 
-/* Footer / Contact (Fixed) */
+/* =========================
+   Footer / Contact
+========================= */
 footer.contact {
   position: fixed;
   bottom: 0;
