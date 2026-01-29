@@ -1,19 +1,55 @@
 const GITHUB_USERNAME = "yousef-martaa";
 const pinnedProjectsKey = "pinnedProjects";
 
-async function fetchGitHubProjects() {
+/* =========================
+   Fetch GitHub Repos
+========================= */
+async function fetchUserRepos() {
   const res = await fetch(
-    `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated`
+    `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`
   );
   return await res.json();
 }
 
+async function fetchOrgRepos() {
+  const orgsRes = await fetch(
+    `https://api.github.com/users/${GITHUB_USERNAME}/orgs`
+  );
+  const orgs = await orgsRes.json();
+
+  const repos = [];
+
+  for (const org of orgs) {
+    const res = await fetch(
+      `https://api.github.com/orgs/${org.login}/repos?per_page=100&sort=updated`
+    );
+    const data = await res.json();
+    repos.push(...data);
+  }
+
+  return repos;
+}
+
+async function fetchAllRepos() {
+  const [userRepos, orgRepos] = await Promise.all([
+    fetchUserRepos(),
+    fetchOrgRepos()
+  ]);
+
+  return [...userRepos, ...orgRepos];
+}
+
+/* =========================
+   Render Projects Page
+========================= */
 async function renderProjects() {
   const grid = document.getElementById("projectsGrid");
   if (!grid) return;
 
-  const repos = await fetchGitHubProjects();
+  const repos = await fetchAllRepos();
   const pinned = JSON.parse(localStorage.getItem(pinnedProjectsKey)) || [];
+
+  grid.innerHTML = "";
 
   repos.forEach(repo => {
     if (repo.fork) return;
@@ -33,11 +69,17 @@ async function renderProjects() {
       </div>
     `;
 
-    card.querySelector(".pin-btn").onclick = () => togglePin(repo.id);
+    card.querySelector(".pin-btn").addEventListener("click", () => {
+      togglePin(repo.id);
+    });
+
     grid.appendChild(card);
   });
 }
 
+/* =========================
+   Pin / Unpin
+========================= */
 function togglePin(id) {
   let pins = JSON.parse(localStorage.getItem(pinnedProjectsKey)) || [];
 
@@ -51,48 +93,9 @@ function togglePin(id) {
   location.reload();
 }
 
-const grid = document.getElementById("projectsGrid");
-const pinned = JSON.parse(localStorage.getItem("pinnedProjects")) || [];
-
-if (grid) {
-  projects.forEach(project => {
-    const isPinned = pinned.includes(project.id);
-
-    const card = document.createElement("div");
-    card.className = "project-card";
-    card.innerHTML = `
-      <h3>${project.title}</h3>
-      <p>${project.description}</p>
-      <div class="project-actions">
-        <button class="pin-btn">
-          ${isPinned ? "★ Pinned" : "☆ Pin"}
-        </button>
-      </div>
-    `;
-
-    card.querySelector(".pin-btn").onclick = () => {
-      togglePin(project.id);
-    };
-
-    grid.appendChild(card);
-  });
-}
-
-function togglePin(id) {
-  let pins = JSON.parse(localStorage.getItem("pinnedProjects")) || [];
-
-  if (pins.includes(id)) {
-    pins = pins.filter(p => p !== id);
-  } else {
-    pins.push(id);
-  }
-
-  localStorage.setItem("pinnedProjects", JSON.stringify(pins));
-  location.reload();
-}
-
-
-
+/* =========================
+   Render Pinned Projects (Home)
+========================= */
 async function renderPinnedProjects() {
   const container = document.getElementById("pinnedProjectsGrid");
   if (!container) return;
@@ -100,11 +103,11 @@ async function renderPinnedProjects() {
   const pinned = JSON.parse(localStorage.getItem(pinnedProjectsKey)) || [];
   if (pinned.length === 0) return;
 
-  const repos = await fetchGitHubProjects();
+  const repos = await fetchAllRepos();
+  container.innerHTML = "";
 
   repos
     .filter(repo => pinned.includes(repo.id))
-    .slice(0, 2)
     .forEach(repo => {
       const card = document.createElement("div");
       card.className = "project-card";
@@ -117,6 +120,8 @@ async function renderPinnedProjects() {
     });
 }
 
-
+/* =========================
+   Init
+========================= */
 renderProjects();
 renderPinnedProjects();
