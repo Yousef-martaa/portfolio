@@ -1,4 +1,4 @@
-const GITHUB_USERNAME = "yousef-martaa"; 
+const GITHUB_USERNAME = "yousef-martaa";
 const pinnedProjectsKey = "pinnedProjects";
 
 async function fetchGitHubProjects() {
@@ -16,7 +16,7 @@ async function renderProjects() {
   const pinned = JSON.parse(localStorage.getItem(pinnedProjectsKey)) || [];
 
   repos.forEach(repo => {
-    if (repo.fork) return; 
+    if (repo.fork) return;
 
     const isPinned = pinned.includes(repo.id);
 
@@ -50,54 +50,6 @@ function togglePin(id) {
   localStorage.setItem(pinnedProjectsKey, JSON.stringify(pins));
   location.reload();
 }
-
-
-
-
-fetch("/api/projects")
-  .then(res => res.json())
-  .then(projects => {
-    const container = document.getElementById("projects");
-
-    projects.forEach(p => {
-      const div = document.createElement("div");
-
-      div.innerHTML = `
-        <h3>${p.title}</h3>
-        <p class="project-desc">${p.description}</p>
-        <button class="toggle-btn">Read more</button>
-        <small>${p.tech}</small>
-`;
-
-
-      const button = div.querySelector(".toggle-btn");
-
-      button.addEventListener("click", () => {
-        div.classList.toggle("expanded");
-        button.textContent =
-          button.textContent === "Read more"
-            ? "Show less"
-            : "Read more";
-      });
-
-      container.appendChild(div);
-    });
-  });
-
-  const projects = [
-  {
-    id: 1,
-    title: "CookieBliss",
-    description: "Cookie e-commerce project",
-    pinned: false
-  },
-  {
-    id: 2,
-    title: "Portfolio Website",
-    description: "Personal portfolio",
-    pinned: false
-  }
-];
 
 const grid = document.getElementById("projectsGrid");
 const pinned = JSON.parse(localStorage.getItem("pinnedProjects")) || [];
@@ -138,3 +90,33 @@ function togglePin(id) {
   localStorage.setItem("pinnedProjects", JSON.stringify(pins));
   location.reload();
 }
+
+
+
+async function renderPinnedProjects() {
+  const container = document.getElementById("pinnedProjectsGrid");
+  if (!container) return;
+
+  const pinned = JSON.parse(localStorage.getItem(pinnedProjectsKey)) || [];
+  if (pinned.length === 0) return;
+
+  const repos = await fetchGitHubProjects();
+
+  repos
+    .filter(repo => pinned.includes(repo.id))
+    .slice(0, 2)
+    .forEach(repo => {
+      const card = document.createElement("div");
+      card.className = "project-card";
+      card.innerHTML = `
+        <h3>${repo.name}</h3>
+        <p>${repo.description || "No description provided."}</p>
+        <a href="${repo.html_url}" target="_blank">GitHub</a>
+      `;
+      container.appendChild(card);
+    });
+}
+
+
+renderProjects();
+renderPinnedProjects();
