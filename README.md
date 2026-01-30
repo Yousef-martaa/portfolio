@@ -20,18 +20,6 @@ This portfolio demonstrates practical use of frontend and backend fundamentals, 
 - Dynamic rendering of projects using JavaScript
 - Fixed footer with visible contact information
 
-## Getting Started
-To run the project locally:
-
-```bash
-npm install
-node server.js
-
-Then open:
-http://localhost:3000
-
-```
-
 ## Contact
 
 Email: a.alkendi26@gmail.com
