@@ -5,10 +5,10 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const formData = {
-    name: name.value,
-    email: email.value,
-    subject: subject.value,
-    message: message.value,
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    subject: document.getElementById("subject").value,
+    message: document.getElementById("message").value,
   };
 
   try {
@@ -27,7 +27,7 @@ form.addEventListener("submit", async (e) => {
       messageBox.textContent = "❌ Failed to send message.";
       messageBox.className = "form-message error";
     }
-  } catch {
+  } catch (error) {
     messageBox.textContent = "❌ Server error.";
     messageBox.className = "form-message error";
   }
