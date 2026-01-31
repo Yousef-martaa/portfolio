@@ -1,5 +1,4 @@
 const GITHUB_USERNAME = "yousef-martaa";
-const pinnedProjectsKey = "pinnedProjects";
 
 /* =========================
    Fetch GitHub Repos
@@ -40,84 +39,72 @@ async function fetchAllRepos() {
 }
 
 /* =========================
-   Render Projects Page
+   Render Projects Page (ALL projects)
 ========================= */
 async function renderProjects() {
   const grid = document.getElementById("projectsGrid");
   if (!grid) return;
 
   const repos = await fetchAllRepos();
-  const pinned = JSON.parse(localStorage.getItem(pinnedProjectsKey)) || [];
-
   grid.innerHTML = "";
 
   repos.forEach(repo => {
     if (repo.fork) return;
 
-    const isPinned = pinned.includes(repo.id);
-
     const card = document.createElement("div");
     card.className = "project-card";
+
     card.innerHTML = `
       <h3>${repo.name}</h3>
       <p>${repo.description || "No description provided."}</p>
       <div class="project-actions">
         <a href="${repo.html_url}" target="_blank">GitHub</a>
-        <button class="pin-btn">
-          ${isPinned ? "★ Pinned" : "☆ Pin"}
-        </button>
       </div>
     `;
-
-    card.querySelector(".pin-btn").addEventListener("click", () => {
-      togglePin(repo.id);
-    });
 
     grid.appendChild(card);
   });
 }
 
 /* =========================
-   Pin / Unpin
+   Render Pinned Projects (HOME - STATIC)
 ========================= */
-function togglePin(id) {
-  let pins = JSON.parse(localStorage.getItem(pinnedProjectsKey)) || [];
-
-  if (pins.includes(id)) {
-    pins = pins.filter(p => p !== id);
-  } else {
-    pins.push(id);
+const pinnedProjects = [
+  {
+    name: "Mental-Health-Chatbot",
+    description: "AI-powered mental health chatbot built with Python.",
+    url: "https://github.com/yousef-martaa/Mental-Health-Chatbot"
+  },
+  {
+    name: "Portfolio",
+    description: "Personal portfolio website built with HTML, CSS, and JavaScript.",
+    url: "https://github.com/yousef-martaa/portfolio"
+  },
+  {
+    name: "CookieBliss",
+    description: "Commercial cookie website built as a real client project.",
+    url: "https://github.com/yousef-martaa/CookieBliss"
   }
+];
 
-  localStorage.setItem(pinnedProjectsKey, JSON.stringify(pins));
-  location.reload();
-}
-
-/* =========================
-   Render Pinned Projects (Home)
-========================= */
-async function renderPinnedProjects() {
+function renderPinnedProjects() {
   const container = document.getElementById("pinnedProjectsGrid");
   if (!container) return;
 
-  const pinned = JSON.parse(localStorage.getItem(pinnedProjectsKey)) || [];
-  if (pinned.length === 0) return;
-
-  const repos = await fetchAllRepos();
   container.innerHTML = "";
 
-  repos
-    .filter(repo => pinned.includes(repo.id))
-    .forEach(repo => {
-      const card = document.createElement("div");
-      card.className = "project-card";
-      card.innerHTML = `
-        <h3>${repo.name}</h3>
-        <p>${repo.description || "No description provided."}</p>
-        <a href="${repo.html_url}" target="_blank">GitHub</a>
-      `;
-      container.appendChild(card);
-    });
+  pinnedProjects.forEach(project => {
+    const card = document.createElement("div");
+    card.className = "project-card";
+
+    card.innerHTML = `
+      <h3>${project.name}</h3>
+      <p>${project.description}</p>
+      <a href="${project.url}" target="_blank">GitHub</a>
+    `;
+
+    container.appendChild(card);
+  });
 }
 
 /* =========================
