@@ -437,3 +437,16 @@ body {
   transform: translateY(-4px);
   color: #818cf8;
 }
+
+.center-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  max-width: 500px;
+  padding: 25px 30px;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  z-index: 999;
+}
