@@ -19,10 +19,10 @@ form.addEventListener("submit", async (e) => {
     });
 
     if (res.ok) {
-      form.style.display = "none;"
+      form.style.display = "none";
       messageBox.innerHTML =
         "✅ Thanks for reaching out! I’ll get back to you as soon as possible.<br/>If it’s urgent, call <strong>072-783-3392</strong>.";
-      messageBox.className = "form-message success";
+      messageBox.className = "form-message success center-message";
       form.reset();
     } else {
       messageBox.textContent = "❌ Failed to send message.";
