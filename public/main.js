@@ -73,7 +73,7 @@ const pinnedProjects = [
   {
     name: "Mental-Health-Chatbot",
     description: "AI-powered mental health chatbot built with Python.",
-    url: "https://github.com/yousef-martaa/Mental-Health-Chatbot"
+    url: "https://github.com/Chatbot-Mental-Health/Mental-Health-Chatbot"
   },
   {
     name: "Portfolio",
@@ -83,7 +83,7 @@ const pinnedProjects = [
   {
     name: "CookieBliss",
     description: "Commercial cookie website built as a real client project.",
-    url: "https://github.com/yousef-martaa/CookieBliss"
+    url: "https://github.com/FeatureDev/CookieBliss"
   }
 ];
 
