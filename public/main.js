@@ -74,7 +74,7 @@ const pinnedProjects = [
   {
     name: "mogges-store.se",
     description: "Production-ready e-commerce platform and integrated AI chatbot.",
-    Url: "https://mogges-store.se",
+    url: "https://mogges-store.se",
     
   },
 
