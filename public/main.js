@@ -70,14 +70,15 @@ async function renderProjects() {
    Render Pinned Projects (HOME - STATIC)
 ========================= */
 const pinnedProjects = [
-  
-   {
+
+  {
     name: "mogges-store.se",
     description: "Production-ready e-commerce platform and integrated AI chatbot.",
-    url: "https://github.com/FeatureDev/Mogges-Store"
+    liveUrl: "https://mogges-store.se",
+    githubUrl: "https://github.com/FeatureDev/Mogges-Store"
   },
-  
-  
+
+
   {
     name: "Mental-Health-Chatbot",
     description: "AI-powered mental health chatbot built with Python.",
