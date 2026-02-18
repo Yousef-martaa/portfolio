@@ -450,3 +450,20 @@ body {
   border-radius: 10px;
   z-index: 999;
 }
+
+.skills-intro{
+    max-width: 700px;
+    margin: 0 auto 40px;
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #94a3b8; 
+}
+
+
+
+.skill.highlight{
+  border-color: #818cf8;
+  box-shadow: 0 6px 18px rgba(129,140,248,0.25);
+  transform: translateY(-4px);
+}
