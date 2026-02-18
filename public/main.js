@@ -69,6 +69,33 @@ async function renderProjects() {
 /* =========================
    Render Pinned Projects (HOME - STATIC)
 ========================= */
+const pinnedProjects = [
+
+  {
+    name: "mogges-store.se",
+    description: "Production-ready e-commerce platform and integrated AI chatbot.",
+    liveUrl: "https://mogges-store.se",
+    githubUrl: "https://github.com/FeatureDev/Mogges-Store"
+  },
+
+
+  {
+    name: "Mental-Health-Chatbot",
+    description: "AI-powered mental health chatbot built with Python.",
+    url: "https://github.com/Chatbot-Mental-Health/Mental-Health-Chatbot"
+  },
+  {
+    name: "Portfolio",
+    description: "Personal portfolio website built with HTML, CSS, and JavaScript.",
+    url: "https://github.com/yousef-martaa/portfolio"
+  },
+  {
+    name: "CookieBliss",
+    description: "Commercial cookie website built as a real client project.",
+    url: "https://github.com/FeatureDev/CookieBliss"
+  }
+];
+
 function renderPinnedProjects() {
   const container = document.getElementById("pinnedProjectsGrid");
   if (!container) return;
@@ -82,22 +109,7 @@ function renderPinnedProjects() {
     card.innerHTML = `
       <h3>${project.name}</h3>
       <p>${project.description}</p>
-
-      <div class="project-actions">
-
-        ${
-          project.liveUrl
-            ? `<a href="${project.liveUrl}" target="_blank">Live</a>`
-            : ""
-        }
-
-        ${
-          project.githubUrl
-            ? `<a href="${project.githubUrl}" target="_blank">GitHub</a>`
-            : `<a href="${project.url}" target="_blank">GitHub</a>`
-        }
-
-      </div>
+      <a href="${project.url}" target="_blank">GitHub</a>
     `;
 
     container.appendChild(card);
