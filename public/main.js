@@ -75,7 +75,7 @@ const pinnedProjects = [
     name: "mogges-store.se",
     description: "Production-ready e-commerce platform and integrated AI chatbot.",
     liveUrl: "https://mogges-store.se",
-    githubUrl: "https://github.com/FeatureDev/Mogges-Store"
+    
   },
 
 
