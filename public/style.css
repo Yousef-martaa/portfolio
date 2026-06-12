@@ -460,10 +460,18 @@ body {
     color: #94a3b8; 
 }
 
-
-
-.skill.highlight{
-  border-color: #818cf8;
-  box-shadow: 0 6px 18px rgba(129,140,248,0.25);
-  transform: translateY(-4px);
+.contact-details {
+  margin-top: 18px;
+  color: #e5e7eb;
 }
+
+.contact-details a {
+  color: #e5e7eb;
+  text-decoration: none;
+}
+
+.contact-details a:hover {
+  color: #818cf8;
+  text-decoration: underline;
+}
+

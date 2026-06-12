@@ -70,30 +70,27 @@ async function renderProjects() {
    Render Pinned Projects (HOME - STATIC)
 ========================= */
 const pinnedProjects = [
-
+  {
+    name: "StaffSync",
+    description: "Full-stack employee management system with authentication, RBAC, user management, and cloud deployment.",
+    url: "https://staffsync-app.vercel.app/"
+  },
+  {
+    name: "VägenTillVegan",
+    description: "Full-stack restaurant discovery platform for vegan and vegetarian-friendly restaurants in Sweden.",
+    url: "https://vagen-till-vegan.vercel.app/"
+  },
   {
     name: "mogges-store.se",
     description: "Production-ready e-commerce platform and integrated AI chatbot.",
     url: "https://mogges-store.se",
-    
+
   },
-
-
   {
     name: "Mental-Health-Chatbot",
     description: "AI-powered mental health chatbot built with Python.",
     url: "https://github.com/Chatbot-Mental-Health/Mental-Health-Chatbot"
   },
-  {
-    name: "Portfolio",
-    description: "Personal portfolio website built with HTML, CSS, and JavaScript.",
-    url: "https://github.com/yousef-martaa/portfolio"
-  },
-  {
-    name: "CookieBliss",
-    description: "Commercial cookie website built as a real client project.",
-    url: "https://github.com/FeatureDev/CookieBliss"
-  }
 ];
 
 function renderPinnedProjects() {
