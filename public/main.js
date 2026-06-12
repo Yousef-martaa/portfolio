@@ -58,7 +58,7 @@ async function renderProjects() {
       <h3>${repo.name}</h3>
       <p>${repo.description || "No description provided."}</p>
       <div class="project-actions">
-        <a href="${repo.html_url}" target="_blank">GitHub</a>
+        <a href="${repo.html_url}" target="_blank">Open Project</a>
       </div>
     `;
 
@@ -106,7 +106,7 @@ function renderPinnedProjects() {
     card.innerHTML = `
       <h3>${project.name}</h3>
       <p>${project.description}</p>
-      <a href="${project.url}" target="_blank">GitHub</a>
+      <a href="${project.url}" target="_blank">Open Project</a>
     `;
 
     container.appendChild(card);
