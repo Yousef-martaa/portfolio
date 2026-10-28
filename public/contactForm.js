@@ -1,35 +1,24 @@
-const form = document.getElementById("contactForm");
-const messageBox = document.getElementById("formMessage");
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const formData = {
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    subject: document.getElementById("subject").value,
-    message: document.getElementById("message").value,
-  };
-
+const form = document.getElementById('contactForm');
+const messageBox = document.getElementById('formMessage');
+form.addEventListener('submit', async event => {
+  event.preventDefault();
+  const button = form.querySelector('button[type="submit"]');
+  if (button.disabled || !form.reportValidity()) return;
+  button.disabled = true; button.textContent = 'Sending…'; form.setAttribute('aria-busy', 'true');
+  messageBox.textContent = 'Sending your message…';
+  const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 30000);
   try {
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
-
-    if (res.ok) {
-      form.style.display = "none";
-      messageBox.innerHTML =
-        "✅ Thanks for reaching out! I’ll get back to you as soon as possible.<br/>If it’s urgent, call <strong>072-783-3392</strong>.";
-      messageBox.className = "form-message success center-message";
-      form.reset();
-    } else {
-      messageBox.textContent = "❌ Failed to send message.";
-      messageBox.className = "form-message error";
+    const data = Object.fromEntries(['name', 'email', 'subject', 'message'].map(id => [id, document.getElementById(id).value]));
+    const response = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data), signal: controller.signal });
+    if (!response.ok) {
+      let payload; try { payload = await response.json(); } catch { /* Handle proxy HTML too. */ }
+      throw new Error(payload?.message || 'Message could not be sent. Please try again or use email or telephone.');
     }
+    form.reset(); form.hidden = true;
+    messageBox.textContent = 'Thanks for reaching out! I’ll get back to you as soon as possible. If it’s urgent, call 072-783-3392.';
+    messageBox.className = 'form-message success'; messageBox.focus();
   } catch (error) {
-    messageBox.textContent = "❌ Server error.";
-    messageBox.className = "form-message error";
-  }
+    messageBox.textContent = error.name === 'AbortError' ? 'The request timed out; delivery could not be confirmed. Please contact me directly.' : error.message;
+    messageBox.className = 'form-message error';
+  } finally { clearTimeout(timer); button.disabled = false; button.textContent = 'Send message ↗'; form.setAttribute('aria-busy', 'false'); }
 });
