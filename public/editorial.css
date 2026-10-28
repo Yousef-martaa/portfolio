@@ -1,0 +1,129 @@
+/* Editorial refinement: neutral architecture, project-local colour, tactile motion. */
+:root{--cobalt:#2948ba;--deep:#203987;--ivory:#eeeae2;--ink:#23252a;--quiet:#65656a;--hair:#cecbc3}
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:page-out 220ms ease both}
+::view-transition-new(root){animation:page-in 600ms cubic-bezier(.22,1,.36,1) both}
+@keyframes page-out{to{opacity:0;transform:translateY(-8px)}}
+@keyframes page-in{from{opacity:0;transform:translateY(15px)}}
+.site-header{background:var(--ivory);color:var(--ink);padding-block:18px;border-bottom:1px solid var(--hair)}
+.site-header nav a{position:relative}
+.site-header nav a[aria-current=page]{color:var(--cobalt)}
+.site-header .header-note{color:var(--quiet)}
+.site-header nav a[aria-current=page]{border-color:var(--cobalt)}
+.site-header nav a:after{content:'';position:absolute;bottom:3px;left:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s}
+.site-header nav a:hover:after{transform:scaleX(1);transform-origin:left}
+.opening{background:var(--ivory);color:var(--ink);padding-top:32px;padding-bottom:28px}
+.masthead{border-color:var(--hair);padding-bottom:26px}
+.masthead h1{font-size:clamp(80px,25.5vw,420px);letter-spacing:-.035em;color:var(--ink)}
+.surname{color:var(--cobalt)}
+.brand-mark{color:var(--cobalt)}
+.intro-line{padding-block:30px 18px;align-items:start}
+.intro-line h2{font-size:clamp(19px,2vw,28px);line-height:1.22;letter-spacing:-.035em;max-width:430px}
+.intro-line>div>p{margin-top:12px;color:var(--quiet);font-size:1rem;line-height:1.65}
+.intro-line>div>.intro-purpose{font-size:1rem;max-width:44ch;line-height:1.65}
+.intro-line>.micro{color:var(--quiet);font-size:.75rem}
+.intro-arrow{gap:18px;color:var(--cobalt);text-decoration:none}
+.intro-arrow span{display:grid;place-items:center;width:56px;height:56px;background:var(--cobalt);color:var(--chalk);border-radius:50%;transition:transform .5s}
+.intro-arrow:hover span{transform:translateY(7px)}
+.theatre{background:#1d2025!important;color:#eeeae2!important;padding-top:28px}
+.stage-top{padding-bottom:16px}
+/* Reserve room for the heading, navigation and caption; grow on tall displays. */
+.theatre{--reel-height:clamp(340px,min(36vw,calc(100svh - 290px)),620px)}
+.reel-viewport{min-height:0}
+.reel-rail{gap:24px;transition:transform 1050ms cubic-bezier(.19,1,.22,1)}
+.reel-slide{display:flex;flex-direction:column;justify-content:space-between;flex-basis:86%;height:auto;min-height:var(--reel-height);background:var(--scene);opacity:.32;filter:saturate(.4);transition:opacity .7s,filter .7s}
+.reel-slide.is-current{opacity:1;filter:none}
+.reel-slide .project-cover{transition:transform 700ms cubic-bezier(.22,1,.36,1);transform:translate3d(var(--depth-x,0px),var(--depth-y,0px),0) scale(1.035)}
+.shot-top{position:relative;top:auto;left:auto;right:auto;margin:24px 32px 0;letter-spacing:.06em}
+.shot-bottom{position:relative;left:auto;right:auto;bottom:auto;margin:clamp(160px,calc(var(--reel-height) - 220px),240px) 32px 24px;padding-top:16px;border-top:1px solid currentColor;flex:0 0 auto;align-items:flex-end}
+.reel-slide .scene-art{top:76px;bottom:125px}
+.reel-slide .indoor-plan{inset:25% auto auto 24%;width:52%;height:45%;gap:8px;padding:8px;transform:rotate(-4deg)}
+.reel-slide .context-stack{top:18%;bottom:20%;left:40%;width:24%;transform:rotate(-4deg)}
+.reel-slide .context-sheet{padding:10px}
+.reel-slide .context-sheet:nth-child(1){transform:rotate(-8deg) translate(-35px,-2px)}
+.reel-slide .context-sheet:nth-child(2){transform:rotate(-4deg) translate(-18px,-1px)}
+.reel-slide .context-sheet strong{font-size:clamp(24px,3vw,42px)}
+.reel-slide .art-commerce .art-display{top:0;font-size:clamp(90px,14vw,200px)}
+.reel-slide .collection-tag{top:6%;width:140px;min-height:0;padding:12px;gap:10px}
+.reel-slide .collection-tag strong{font-size:28px}
+.reel-slide .art-family .art-display{top:10%;font-size:clamp(38px,5vw,72px)}
+.shot-bottom .shot-title{min-width:0;overflow-wrap:anywhere;line-height:1.02}
+.shot-bottom .explore-project{flex-shrink:0}
+.shot-title{font-size:clamp(48px,6vw,88px);letter-spacing:-.05em}
+.explore-project{transition:gap .4s,opacity .3s}
+.explore-project:hover{gap:32px}
+.reel-controls{padding-block:16px 20px}
+.reel-drag-hint{font-size:11px;color:var(--ivory);white-space:nowrap;pointer-events:none}
+.reel-drag-hint.is-dismissed{visibility:hidden}
+.drag-arrow{margin-left:6px}
+.swipe-copy{display:none}
+@media(pointer:coarse){.drag-copy,.drag-arrow{display:none}.swipe-copy{display:inline}}
+.reel-viewport a,.reel-viewport button{cursor:pointer}
+@media(max-width:700px){.reel-controls{padding-bottom:36px}.reel-arrows{position:relative}.reel-drag-hint{position:absolute;right:0;top:calc(100% + 4px);font-size:11px;letter-spacing:0}}
+.reel-arrows button{width:48px;height:48px;border:1px solid #eeeeee35;border-radius:50%;transition:background .3s,transform .3s}
+.reel-arrows button:hover{background:#ffffff15;transform:translateX(3px)}
+.reel-dot:after{transition:background .4s,height .4s}
+.reel-curtain{background:#1d2025}
+.reel-slide:has(.cover-image) .scene-art{display:none}
+.reel-slide .cover-image,.reel-slide.is-current .cover-image{width:74%;height:calc(100% - 225px);left:13%;right:auto;top:76px;object-fit:contain;transform:none;filter:drop-shadow(0 18px 22px #00000028)}
+.reel-slide .cover-label{bottom:auto;top:76px;left:32px;font-size:10px}
+.art-family .art-display{font-size:clamp(44px,6vw,90px)}
+.reel-slide .family-orbit{top:10%;bottom:30%;right:9%;width:40%}
+.family-page{box-shadow:0 16px 24px #00000016;border:0}
+.project-caption{padding-block:18px 20px}
+.profile{padding-block:56px 64px}
+.profile h2{font-size:clamp(34px,4.4vw,62px);line-height:1.12;letter-spacing:-.045em}
+.profile-bottom{margin-top:24px;gap:36px}
+.profile-bottom p{font-size:1rem;line-height:1.7;max-width:60ch}
+.site-footer{background:#1d2025;color:var(--ivory);padding-top:32px;padding-bottom:24px}
+.contact-callout{font-size:clamp(60px,9vw,132px);letter-spacing:-.05em;line-height:1.15;padding-block:20px 28px}
+.footer-contact,.footer-bottom{color:#d2d0ca;border-color:#ffffff30}
+.page-opening,.contact-opening{background:var(--ivory);color:var(--ink);padding-block:40px 36px}
+.catalogue-project{border-color:var(--hair)}
+.catalogue-project .project-cover{transition:transform .7s cubic-bezier(.22,1,.36,1)}
+.catalogue-project:hover .project-cover{transform:translateY(-5px)}
+.project-dialog{border-radius:0;box-shadow:0 30px 100px #0005}
+.project-dialog::backdrop{background:#101319aa;backdrop-filter:blur(12px)}
+.reading-progress{position:fixed;top:0;left:0;width:100%;height:3px;background:var(--cobalt);transform:scaleX(0);transform-origin:left;z-index:150;pointer-events:none}
+/* Reading sizes live in the final cascade layer, after both layout stylesheets.
+   Keep display artwork and the animated masthead independent of body copy. */
+.page-opening>h1,.contact-opening h1{font-size:clamp(48px,6.8vw,100px);line-height:1.05;margin-block:20px 28px}
+.page-lede>p:first-child,.contact-opening>p:last-child{font-size:17px;line-height:1.65;max-width:60ch}
+.project-copy>p:not(.micro):not(.project-role),.compact-projects .project-copy>p:not(.micro):not(.project-role),.skill-row>p,.experience-row>div>p:last-child,.contact-aside{font-size:1rem;line-height:1.7;max-width:60ch}
+.project-copy h2{font-size:clamp(32px,3.5vw,50px);line-height:1.12}
+.project-copy>p.project-role,.project-role{font-size:13px;line-height:1.65}
+.case-section>.section-heading+p,.collection-status{font-size:15px;line-height:1.7}
+#captionNote{font-size:.875rem;line-height:1.65;max-width:44ch}
+#captionNote .caption-credit{display:block;font-size:.85em;margin-top:.25em}
+#captionName{font-size:1rem;line-height:1.45}
+.form-group label{font-size:14px}
+.form-group label span{font-size:12px}
+.contact-layout{padding-block:48px 60px}
+.detail-title-column h2{letter-spacing:-.05em;font-size:clamp(40px,5vw,68px);line-height:1.08}
+.detail-description{font-size:17px;line-height:1.7;max-width:60ch}
+.detail-tech{font-size:14px;line-height:1.65}
+.reel-index{min-height:0}
+@media(min-width:701px) and (max-height:700px){
+ .masthead h1{font-size:clamp(80px,23.5vw,390px)}
+ .reel-slide .art-commerce .art-display{font-size:clamp(80px,11vw,140px)}
+ .reel-slide .collection-tag{top:0;width:110px;padding:8px;gap:6px}
+ .reel-slide .collection-tag strong{font-size:18px}
+ .reel-slide .family-orbit{width:28%;right:12%;top:12%;bottom:32%}
+ .reel-slide .family-page{padding:6px;font-size:9px}
+ .reel-slide .family-symbol{font-size:24px}
+ .opening{padding-top:24px;padding-bottom:20px}
+ .intro-line{padding-block:24px 12px}
+}
+@media(max-width:700px){
+ .site-header{padding-block:18px}.opening{padding-top:24px;padding-bottom:14px}.masthead h1{font-size:25.5vw}.intro-line{grid-template-columns:1fr;gap:16px;padding-block:22px}.intro-line h2{font-size:24px}.intro-line>.micro{font-size:.75rem}
+ .theatre{padding-top:18px}.reel-slide{min-height:480px;flex-basis:88%}.reel-rail{gap:12px}.shot-top{margin:22px 20px 0}.shot-bottom{margin:260px 20px 24px;gap:14px;align-items:flex-start}.shot-title{font-size:clamp(42px,12vw,72px)}.reel-slide .cover-label{top:65px;left:20px;max-width:80%;font-size:9px}.reel-slide .scene-art{top:76px;bottom:175px}.reel-slide .family-orbit{left:18%;right:auto;width:66%;top:42%;bottom:22%}.reel-slide .art-family .art-display{top:8%;font-size:32px}.reel-slide .context-stack{left:30%;width:58%;top:20%;bottom:20%}.reel-slide .context-sheet strong{font-size:32px}.reel-slide .indoor-plan{left:12%;width:76%;top:24%;height:50%;gap:6px}.reel-slide .cover-image,.reel-slide.is-current .cover-image{width:90%;height:220px;left:5%;top:85px}.reel-arrows button{width:42px;height:42px}.reel-controls{gap:8px}.reel-controls>p{font-size:.75rem}.profile{padding-block:40px 48px}.profile h2{font-size:clamp(32px,8vw,40px)}.profile-bottom{margin-top:22px;gap:20px}.contact-callout{font-size:clamp(48px,14vw,88px)}
+
+ .page-opening,.contact-opening{padding-block:28px 30px}
+ .page-opening>h1,.contact-opening h1{font-size:clamp(42px,9vw,58px);margin-block:18px 24px}
+ .page-lede>p:first-child,.contact-opening>p:last-child{font-size:16px}
+ .contact-layout{padding-block:32px 44px}
+ .detail-description{font-size:16px}
+ .detail-title-column h2{font-size:clamp(36px,9vw,48px)}
+ .footer-contact{font-size:14px}
+}
+@media(prefers-reduced-motion:reduce){.reading-progress{display:none}::view-transition-old(root),::view-transition-new(root){animation:none}.reel-slide .project-cover{transform:none}}

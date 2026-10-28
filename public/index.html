@@ -1,71 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html><html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#eeeae2"><meta name="description" content="Yousef Martaa — Software Engineer in Sweden. Practical web, mobile and automation projects, built around real problems."><title>Software around real problems | Yousef Martaa</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="cinematic.css"><script src="main.js" defer></script>
+<link rel="stylesheet" href="editorial.css"><script type="module" src="editorial.mjs"></script></head>
+<body class="home"><a class="skip-link" href="#main">Skip to content</a>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="/main.js" defer></script>
+<header class="site-header shell"><a class="brand" href="index.html" aria-label="Yousef Martaa home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>Y. MARTAA</a><span class="header-note">Software Engineer, based in Sweden</span>
+<nav aria-label="Main navigation"><a href="index.html" aria-current="page">Home</a><a href="projects.html">Projects</a><a href="skills.html">Skills</a><a href="contact.html">Contact</a>
+</nav>
+</header>
+<main id="main" tabindex="-1">
+<section class="opening shell" aria-label="Introduction">
+<div class="masthead"><h1 aria-label="Yousef Martaa"><span class="letter" aria-hidden="true" style="--i:0"><span>Y</span></span><span class="letter" aria-hidden="true" style="--i:1"><span>O</span></span><span class="letter" aria-hidden="true" style="--i:2"><span>U</span></span><span class="letter" aria-hidden="true" style="--i:3"><span>S</span></span><span class="letter" aria-hidden="true" style="--i:4"><span>E</span></span><span class="letter" aria-hidden="true" style="--i:5"><span>F</span></span></h1><span class="surname" aria-hidden="true">MARTAA</span>
+</div>
+<div class="intro-line"><p class="micro">Selected work / 2026<br>Web · Mobile · Automation</p>
+<div><h2>I build software around<br>problems I know.</h2><p>From work to family life,<br>practical needs become useful tools.</p>
+<p class="intro-purpose">This site started with a need of my own: one place to bring together the tools I build and the services I offer.</p>
+</div><a class="intro-arrow" href="#selected-work">Explore the work <span aria-hidden="true">↓</span></a>
+</div>
+</section>
 
-</head>
+<section class="theatre" id="projectReel" aria-roledescription="carousel" aria-labelledby="selected-work" tabindex="0">
+<div class="stage-top shell"><h2 id="selected-work" class="micro">● Selected work</h2><div class="reel-switch" role="group" aria-label="Selected work view"><button type="button" data-reel-view="reel" aria-pressed="true">Reel</button><button type="button" data-reel-view="index" aria-pressed="false">Index</button></div>
+</div>
+<div class="reel-viewport" id="reelViewport">
+<div class="reel-rail" id="reelRail"><p class="shell">Loading selected work…</p>
+</div>
+</div>
+<div class="reel-index shell" id="reelIndex" hidden aria-label="Selected project index"></div>
+<div class="reel-controls shell"><p id="reelCount" class="micro" aria-live="polite" aria-atomic="true"></p>
+<div id="reelDots" class="reel-dots" role="group" aria-label="Select a project">
+</div>
+<div class="reel-arrows"><span id="reelDragHint" class="micro reel-drag-hint"><span class="drag-copy">Drag to explore</span><span class="swipe-copy">Swipe to explore</span><span class="drag-arrow" aria-hidden="true">↔</span></span><button id="reelPrev" type="button" aria-label="Previous project">←</button><button id="reelNext" type="button" aria-label="Next project">→</button>
+</div>
+</div>
+</section>
 
-<body>
-
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">Yousef</a>
-
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="skills.html">Skills</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-
-    <section class="hero">
-        <h1>Yousef Martaa</h1>
-        <h2>Full-Stack Developer</h2>
-        <p>
-            Software Development student at Kristianstad University with hands-on experience building
-            full-stack web applications and software projects. I enjoy building practical solutions,
-            working with backend APIs, databases, authentication systems, and collaborating in development teams.
-        </p>
-
-        <div class="actions">
-            <a href="https://github.com/Yousef-martaa" target="_blank">GitHub</a>
-        </div>
-
-    </section>
-
-    <section id="pinned-projects">
-        <h2>Featured Projects</h2>
-        <div id="pinnedProjectsGrid" class="projects-grid"></div>
-    </section>
-
-    <footer class="contact">
-        <div class="contact-row">
-            <span>Email: <a href="mailto:a.alkendi26@gmail.com">a.alkendi26@gmail.com</a></span>
-            <span>Phone: +46 72 783 33 92</span>
-            <span>
-                <a href="https://www.linkedin.com/in/yousef-martaa/" target="_blank">LinkedIn</a>
-                ·
-                <a href="https://github.com/yousef-martaa" target="_blank">GitHub</a>
-            </span>
-            <span>Sweden</span>
-        </div>
-
-        <div class="copyright">
-            © 2026 Yousef Martaa. All rights reserved.
-        </div>
-    </footer>
+<div class="project-caption shell" aria-live="polite" aria-atomic="true"><span id="captionName"></span><p id="captionNote"></p><a id="captionLink" class="text-link" href="projects.html">Complete collection</a></div>
+<section class="profile shell" id="profile"><p class="micro">A little context /</p>
+<div><h2>Practical needs.<br><em>Considered software.</em></h2>
+<div class="profile-bottom"><p>From operational challenges at work to everyday life as a parent, I turn practical needs into software. I’m a final-year B.Sc. Software Development student at Kristianstad University, graduating in 2027. I build across the interface and the systems beneath it, with a focus on useful, understandable tools.</p>
+<div><p>Seeking an internship, thesis collaboration or junior development opportunity.</p><a class="text-link" href="skills.html">Skills & experience ↗</a>
+</div>
+</div>
+</div>
+</section>
 
 
-
-
-</body>
-
-</html>
+<noscript><p class="shell">JavaScript powers the project reel and live catalogue. <a href="https://github.com/Yousef-martaa">Browse the GitHub profile</a> or <a href="contact.html">get in touch</a>.</p>
+</noscript>
+</main>
+<footer class="site-footer shell">
+<div class="footer-top micro"><span>Have something in mind?</span><span>Based in Sweden · Open to opportunities</span>
+</div><a class="contact-callout" href="contact.html">Let’s talk.<span aria-hidden="true">↗</span></a>
+<div class="footer-contact"><a href="mailto:a.alkendi26@gmail.com">a.alkendi26@gmail.com</a><a href="tel:+46727833392">+46 72 783 33 92</a>
+</div>
+<div class="footer-bottom"><span>Yousef Martaa © 2026</span>
+<nav aria-label="Social links"><a href="https://www.linkedin.com/in/yousef-martaa/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/Yousef-martaa" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+</nav>
+</div>
+</footer>
+</body></html>

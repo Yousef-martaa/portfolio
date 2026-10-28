@@ -1,0 +1,6 @@
+portfolio-handoff/
+docs/
+tests/
+scripts/
+.git/
+.env*

@@ -1,10 +1,12 @@
 {
   "name": "protofolio",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Yousef Martaa portfolio — vanilla frontend and serverless contact",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test",
+    "check": "node scripts/check.cjs",
+    "preview": "node scripts/preview.cjs",
+    "preview:mock": "node scripts/preview.cjs --mock-contact"
   },
   "keywords": [],
   "author": "",
